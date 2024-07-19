@@ -34,23 +34,23 @@
     <form id="utm-form">
         <div class="form-group">
             <label for="utm-source">UTM Source</label>
-            <input type="text" id="utm-source" name="utm_source" placeholder="e.g., google">
+            <input type="text" id="utm-source" name="utm_source" placeholder="e.g., marketo">
         </div>
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
-            <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., cpc">
+            <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., email">
         </div>
         <div class="form-group">
             <label for="utm-campaign">UTM Campaign</label>
-            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="e.g., summer_sale">
+            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here (e.g 20240626 EU NTN AMOSSHE)">
         </div>
         <div class="form-group">
-            <label for="utm-term">UTM Term</label>
-            <input type="text" id="utm-term" name="utm_term" placeholder="e.g., running_shoes">
+            <label for="utm-campaignid">UTM Campaign ID</label>
+            <input type="text" id="utm-campaignid" name="utm_campaignid" placeholder="e.g., 00vNu000005KKuBIAW">
         </div>
         <div class="form-group">
             <label for="utm-content">UTM Content</label>
-            <input type="text" id="utm-content" name="utm_content" placeholder="e.g., ad_variation_1">
+            <input type="text" id="utm-content" name="utm_content" placeholder="e.g., elive24">
         </div>
         <button type="button" onclick="generateUTM()">Generate UTM URL</button>
     </form>
@@ -61,11 +61,11 @@
             const source = document.getElementById('utm-source').value;
             const medium = document.getElementById('utm-medium').value;
             const campaign = document.getElementById('utm-campaign').value;
-            const term = document.getElementById('utm-term').value;
+            const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
             const baseURL = 'https://example.com';
-            const utmURL = `${baseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_term=${encodeURIComponent(term)}&utm_content=${encodeURIComponent(content)}`;
+            const utmURL = `${baseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
 
             document.getElementById('utm-url').innerText = utmURL;
         }
