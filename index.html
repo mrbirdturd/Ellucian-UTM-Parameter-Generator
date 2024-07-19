@@ -32,9 +32,13 @@
 <body>
     <h1>Ellucian UTM Parameter Builder</h1>
     <form id="utm-form">
-        <div class="form-group">
+     <div class="form-group">
             <label for="utm-source">UTM Source</label>
-            <input type="text" id="utm-source" name="utm_source" placeholder="e.g., marketo">
+            <select id="utm-source" name="utm_source">
+                <option value="google">Google</option>
+                <option value="marketo">Marketo</option>
+                <option value="6sense">6sense</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
