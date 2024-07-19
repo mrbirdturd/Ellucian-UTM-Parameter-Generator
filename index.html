@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTM Parameter Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #utm-url {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ellucian UTM Parameter Builder</h1>
+    <form id="utm-form">
+        <div class="form-group">
+            <label for="utm-source">UTM Source</label>
+            <input type="text" id="utm-source" name="utm_source" placeholder="e.g., google">
+        </div>
+        <div class="form-group">
+            <label for="utm-medium">UTM Medium</label>
+            <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., cpc">
+        </div>
+        <div class="form-group">
+            <label for="utm-campaign">UTM Campaign</label>
+            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="e.g., summer_sale">
+        </div>
+        <div class="form-group">
+            <label for="utm-term">UTM Term</label>
+            <input type="text" id="utm-term" name="utm_term" placeholder="e.g., running_shoes">
+        </div>
+        <div class="form-group">
+            <label for="utm-content">UTM Content</label>
+            <input type="text" id="utm-content" name="utm_content" placeholder="e.g., ad_variation_1">
+        </div>
+        <button type="button" onclick="generateUTM()">Generate UTM URL</button>
+    </form>
+    <div id="utm-url"></div>
+
+    <script>
+        function generateUTM() {
+            const source = document.getElementById('utm-source').value;
+            const medium = document.getElementById('utm-medium').value;
+            const campaign = document.getElementById('utm-campaign').value;
+            const term = document.getElementById('utm-term').value;
+            const content = document.getElementById('utm-content').value;
+
+            const baseURL = 'https://example.com';
+            const utmURL = `${baseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_term=${encodeURIComponent(term)}&utm_content=${encodeURIComponent(content)}`;
+
+            document.getElementById('utm-url').innerText = utmURL;
+        }
+    </script>
+</body>
+</html>
