@@ -34,7 +34,7 @@
     <form id="utm-form">
         <div class="form-group">
             <label for="base-url">Base URL</label>
-            <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com ("https://www." will automatically be added to generated URL)>
+            <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com">
         </div>
         <div class="form-group">
             <label for="utm-source">UTM Source</label>
@@ -46,7 +46,18 @@
         </div>
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
-            <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., email">
+            <select id="utm-medium" name="utm_medium">
+                <option value="social">Social</option>
+                <option value="email">Email</option>
+                <option value="cpc">CPC</option>
+                <option value="display">Display</option>
+                <option value="content_syndication">Content Syndication</option>
+                <option value="retargeting">Retargeting</option>
+                <option value="print">Print</option>
+                <option value="qrcode">QR Code</option>
+                <option value="sponsored-email">Sponsored Email</option>
+                <option value="referral">Referral</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="utm-campaign">UTM Campaign</label>
