@@ -164,4 +164,42 @@
             const medium = document.getElementById('utm-medium').value;
             const campaign = formatCampaignName(document.getElementById('utm-campaign').value);
             const campaignid = document.getElementById('utm-campaignid').value;
-            const content = document.getElementById
+            const content = document.getElementById('utm-content').value;
+
+            let utmURL = `https://www.${encodeURIComponent(baseurl)}?`;
+
+            if (source) {
+                utmURL += `utm_source=${encodeURIComponent(source)}&`;
+            }
+            if (medium) {
+                utmURL += `utm_medium=${encodeURIComponent(medium)}&`;
+            }
+            if (campaign) {
+                utmURL += `utm_campaign=${encodeURIComponent(campaign)}&`;
+            }
+            if (campaignid) {
+                utmURL += `utm_campaignid=${encodeURIComponent(campaignid)}&`;
+            }
+            if (content) {
+                utmURL += `utm_content=${encodeURIComponent(content)}&`;
+            }
+
+            // Remove the trailing "&" if present
+            utmURL = utmURL.replace(/&$/, '');
+
+            document.getElementById('utm-url').innerText = utmURL;
+        }
+
+        function copyToClipboard() {
+            const utmURL = document.getElementById('utm-url').innerText;
+            if (utmURL) {
+                navigator.clipboard.writeText(utmURL).then(() => {
+                    alert('UTM URL copied to clipboard!');
+                });
+            } else {
+                alert('No UTM URL to copy.');
+            }
+        }
+    </script>
+</body>
+</html>
