@@ -27,6 +27,17 @@
             background: #f4f4f4;
             border: 1px solid #ddd;
         }
+        #copy-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #copy-button:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -113,6 +124,7 @@
         <button type="button" onclick="generateUTM()">Generate UTM URL</button>
     </form>
     <div id="utm-url"></div>
+    <button id="copy-button" onclick="copyToClipboard()">Copy URL</button>
 
     <script>
         function formatCampaignName(campaignName) {
@@ -131,6 +143,15 @@
             const utmURL = `${fullBaseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
 
             document.getElementById('utm-url').innerText = utmURL;
+        }
+
+        function copyToClipboard() {
+            const utmURL = document.getElementById('utm-url').innerText;
+            navigator.clipboard.writeText(utmURL).then(() => {
+                alert('UTM URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
     </script>
 </body>
