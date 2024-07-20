@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTM Parameter Builder</title>
+    <title>Ellucian UTM Parameter Builder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,12 +32,11 @@
 <body>
     <h1>Ellucian UTM Parameter Builder</h1>
     <form id="utm-form">
-
-         <div class="form-group">
+        <div class="form-group">
             <label for="base-url">Base URL</label>
             <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com">
         </div>
-     <div class="form-group">
+        <div class="form-group">
             <label for="utm-source">UTM Source</label>
             <select id="utm-source" name="utm_source">
                 <option value="google">Google</option>
@@ -45,7 +44,6 @@
                 <option value="6sense">6sense</option>
             </select>
         </div>
-        
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
             <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., email">
@@ -75,8 +73,8 @@
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
-            
-            const utmURL = `${encodeURIComponent(baseurl)}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
+            const fullBaseURL = `https://www.${encodeURIComponent(baseurl)}`;
+            const utmURL = `${fullBaseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
 
             document.getElementById('utm-url').innerText = utmURL;
         }
