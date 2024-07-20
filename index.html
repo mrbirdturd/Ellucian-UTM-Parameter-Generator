@@ -32,6 +32,11 @@
 <body>
     <h1>Ellucian UTM Parameter Builder</h1>
     <form id="utm-form">
+
+         <div class="form-group">
+            <label for="base-url">Base URL</label>
+            <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com">
+        </div>
      <div class="form-group">
             <label for="utm-source">UTM Source</label>
             <select id="utm-source" name="utm_source">
@@ -40,13 +45,14 @@
                 <option value="6sense">6sense</option>
             </select>
         </div>
+        
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
             <input type="text" id="utm-medium" name="utm_medium" placeholder="e.g., email">
         </div>
         <div class="form-group">
             <label for="utm-campaign">UTM Campaign</label>
-            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here (e.g 20240626 EU NTN AMOSSHE)">
+            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here e.g 20240626 EU NTN AMOSSHE">
         </div>
         <div class="form-group">
             <label for="utm-campaignid">UTM Campaign ID</label>
@@ -62,14 +68,15 @@
 
     <script>
         function generateUTM() {
+            const baseurl = document.getElementById('base-url').value;
             const source = document.getElementById('utm-source').value;
             const medium = document.getElementById('utm-medium').value;
             const campaign = document.getElementById('utm-campaign').value;
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
-            const baseURL = 'https://example.com';
-            const utmURL = `${baseURL}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
+            
+            const utmURL = `${encodeURIComponent(baseurl)}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}&utm_content=${encodeURIComponent(content)}`;
 
             document.getElementById('utm-url').innerText = utmURL;
         }
