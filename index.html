@@ -115,11 +115,15 @@
     <div id="utm-url"></div>
 
     <script>
+        function formatCampaignName(campaignName) {
+            return campaignName.toLowerCase().replace(/\s+/g, '-');
+        }
+
         function generateUTM() {
             const baseurl = document.getElementById('base-url').value;
             const source = document.getElementById('utm-source').value;
             const medium = document.getElementById('utm-medium').value;
-            const campaign = document.getElementById('utm-campaign').value;
+            const campaign = formatCampaignName(document.getElementById('utm-campaign').value);
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
