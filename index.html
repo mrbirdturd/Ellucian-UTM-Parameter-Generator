@@ -44,17 +44,25 @@
             background: #f9f9f9;
             border: 1px solid #ddd;
         }
+        .required-note {
+            color: red;
+            font-size: 0.9em;
+        }
+        .required-asterisk {
+            color: red;
+        }
     </style>
 </head>
 <body>
     <h1>Ellucian UTM Parameter Builder</h1>
+    <p class="required-note">Fields with a red asterisk (*) are required.</p>
     <form id="utm-form">
         <div class="form-group">
-            <label for="base-url">Base URL</label>
+            <label for="base-url">Base URL <span class="required-asterisk">*</span></label>
             <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com" required>
         </div>
         <div class="form-group">
-            <label for="utm-source">UTM Source</label>
+            <label for="utm-source">UTM Source <span class="required-asterisk">*</span></label>
             <select id="utm-source" name="utm_source" required>
                 <option value="" selected>Select value</option>
                 <option value="">None</option>
@@ -107,7 +115,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="utm-medium">UTM Medium</label>
+            <label for="utm-medium">UTM Medium <span class="required-asterisk">*</span></label>
             <select id="utm-medium" name="utm_medium" required>
                 <option value="" selected>Select value</option>
                 <option value="">None</option>
@@ -124,11 +132,11 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="utm-campaign">UTM Campaign</label>
+            <label for="utm-campaign">UTM Campaign <span class="required-asterisk">*</span></label>
             <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here e.g 20240626 EU NTN AMOSSHE" required>
         </div>
         <div class="form-group">
-            <label for="utm-campaignid">UTM Campaign ID</label>
+            <label for="utm-campaignid">UTM Campaign ID <span class="required-asterisk">*</span></label>
             <input type="text" id="utm-campaignid" name="utm_campaignid" placeholder="e.g., 00vNu000005KKuBIAW" required>
         </div>
         <div class="form-group">
@@ -152,14 +160,17 @@
             <li><strong>UTM Campaign:</strong> Enter the campaign name. This field will automatically convert spaces to hyphens and capitalize all letters to lowercase (e.g., "20240626 EU NTN AMOSSHE" becomes "20240626-eu-ntn-amosshe").</li>
             <li><strong>UTM Campaign ID:</strong> If applicable, input the campaign ID (e.g., 00vNu000005KKuBIAW).</li>
             <li><strong>UTM Content:</strong> Add additional content information if needed (e.g., elive24).</li>
-            <li><strong>Generate UTM URL:</strong> Click the "Generate UTM URL" button to create the URL. If you make any changes to the fields, simply click the button again to refresh the URL without needing to refresh the page.</li>
-            <li><strong>Copy UTM URL:</strong> Use the "Copy URL" button to copy the generated URL to your clipboard for easy use.</li>
+            <li><strong>Generate UTM URL:</strong> Click the "Generate UTM URL" button to create the URL. If you make any changes to the fields, simply click the button again to update the URL without refreshing the page.</li>
+            <li><strong>Copy URL:</strong> Use the "Copy URL" button to copy the generated UTM URL to your clipboard for easy use in your campaigns.</li>
         </ol>
+        <p>
+            Note: If any required fields (indicated with a red asterisk *) are left blank, the form will prompt you to fill them out and will not generate the UTM URL until all required fields are complete.
+        </p>
     </div>
 
     <script>
-        function formatCampaignName(campaignName) {
-            return campaignName.toLowerCase().replace(/\s+/g, '-');
+        function formatCampaignName(name) {
+            return name.toLowerCase().replace(/\s+/g, '-');
         }
 
         function generateUTM() {
