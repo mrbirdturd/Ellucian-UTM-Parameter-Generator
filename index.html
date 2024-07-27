@@ -170,6 +170,11 @@
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
+            if (!baseurl || !source || !medium || !campaign || !campaignid) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
             let utmURL = `https://www.${encodeURIComponent(baseurl)}?`;
 
             if (source) {
