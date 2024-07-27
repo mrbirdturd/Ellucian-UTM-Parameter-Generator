@@ -51,11 +51,11 @@
     <form id="utm-form">
         <div class="form-group">
             <label for="base-url">Base URL</label>
-            <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com">
+            <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com" required>
         </div>
         <div class="form-group">
             <label for="utm-source">UTM Source</label>
-            <select id="utm-source" name="utm_source">
+            <select id="utm-source" name="utm_source" required>
                 <option value="" selected>Select value</option>
                 <option value="">None</option>
                 <option value="6sense">6sense</option>
@@ -108,7 +108,7 @@
         </div>
         <div class="form-group">
             <label for="utm-medium">UTM Medium</label>
-            <select id="utm-medium" name="utm_medium">
+            <select id="utm-medium" name="utm_medium" required>
                 <option value="" selected>Select value</option>
                 <option value="">None</option>
                 <option value="social">Social</option>
@@ -125,18 +125,18 @@
         </div>
         <div class="form-group">
             <label for="utm-campaign">UTM Campaign</label>
-            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here e.g 20240626 EU NTN AMOSSHE">
+            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here e.g 20240626 EU NTN AMOSSHE" required>
         </div>
         <div class="form-group">
             <label for="utm-campaignid">UTM Campaign ID</label>
-            <input type="text" id="utm-campaignid" name="utm_campaignid" placeholder="e.g., 00vNu000005KKuBIAW">
+            <input type="text" id="utm-campaignid" name="utm_campaignid" placeholder="e.g., 00vNu000005KKuBIAW" required>
         </div>
         <div class="form-group">
             <label for="utm-content">UTM Content</label>
             <input type="text" id="utm-content" name="utm_content" placeholder="e.g., elive24">
         </div>
         <button type="button" onclick="generateUTM()">Generate UTM URL</button>
-        <button id="copy-button" onclick="copyToClipboard()">Copy URL</button>
+        <button type="button" id="copy-button" onclick="copyToClipboard()">Copy URL</button>
     </form>
     <div id="utm-url"></div>
 
