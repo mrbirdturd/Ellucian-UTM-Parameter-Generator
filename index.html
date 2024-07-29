@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ellucian UTM Parameter Builder</title>
+    <title>UTM Parameter Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,133 +28,99 @@
             background: #f4f4f4;
             border: 1px solid #ddd;
         }
-        .required-asterisk {
+        .required {
             color: red;
         }
-        .required-note {
+        #note {
             color: red;
         }
     </style>
 </head>
 <body>
     <h1>Ellucian UTM Parameter Builder</h1>
-    <p class="required-note">Fields with a red asterisk (*) are required.</p>
+    <p id="note">Fields with a red asterisk (*) are required.</p>
     <form id="utm-form">
         <div class="form-group">
-            <label for="base-url">Base URL <span class="required-asterisk">*</span></label>
+            <label for="base-url">Base URL <span class="required">*</span></label>
             <input type="text" id="base-url" name="base-url" placeholder="e.g., ellucian.com" required>
         </div>
         <div class="form-group">
-            <label for="utm-source">UTM Source <span class="required-asterisk">*</span></label>
-            <select id="utm-source" name="utm_source" multiple required>
-                <option value="">-- Select value --</option>
-                <option value="6sense">6sense</option>
-                <option value="aacrao">AACRAO</option>
-                <option value="badge">Badge</option>
-                <option value="blog">Blog</option>
-                <option value="caubo">CAUBO</option>
-                <option value="chronicle">Chronicle</option>
-                <option value="consensusdemo">ConsensusDemo</option>
-                <option value="customer-center">Customer Center</option>
-                <option value="demandbase">Demandbase</option>
-                <option value="demandscience">DemandScience</option>
-                <option value="digital-insider">Digital Insider</option>
-                <option value="educause">EDUCAUSE</option>
-                <option value="ellucian.com">Ellucian.com</option>
-                <option value="ellumination">Ellumination</option>
-                <option value="encore">Encore</option>
-                <option value="facebook">Facebook</option>
-                <option value="google">Google</option>
-                <option value="industry-drive">Industry Drive</option>
-                <option value="insidescoop-newsletter">InsideScoop Newsletter</option>
-                <option value="insider-higher-ed">Insider Higher Ed</option>
-                <option value="instagram">Instagram</option>
-                <option value="intentsify">Intentsify</option>
-                <option value="itb">ITB</option>
-                <option value="linkedin">LinkedIn</option>
-                <option value="marketo">Marketo</option>
-                <option value="marketolp">MarketoLP</option>
-                <option value="mediaplanet">MediaPlanet</option>
-                <option value="outlook">Outlook</option>
-                <option value="on24">On24</option>
-                <option value="pansoft">Pansoft</option>
-                <option value="podcast">Podcast</option>
-                <option value="postbeyond">PostBeyond</option>
-                <option value="pureb2b">PureB2B</option>
-                <option value="rev-enablement-newsletter">Rev Enablement Newsletter</option>
-                <option value="sign">Sign</option>
-                <option value="taqniyat">Taqniyat</option>
-                <option value="unbounce">Unbounce</option>
-                <option value="universitybusiness">UniversityBusiness</option>
-                <option value="youtube">YouTube</option>
-                <option value="lac-event">LAC Event</option>
-                <option value="ucisa">UCISA</option>
-                <option value="twitter">Twitter</option>
-                <option value="HEUG">HEUG</option>
-                <option value="Press Release">Press Release</option>
-                <option value="Drift">Drift</option>
-                <option value="Gong">Gong</option>
+            <label for="utm-source">UTM Source <span class="required">*</span></label>
+            <select id="utm-source" name="utm_source" multiple="multiple" required>
+                <!-- Options will be added by JavaScript -->
             </select>
         </div>
         <div class="form-group">
-            <label for="utm-medium">UTM Medium <span class="required-asterisk">*</span></label>
-            <select id="utm-medium" name="utm_medium" multiple required>
-                <option value="">-- Select value --</option>
-                <option value="social">Social</option>
-                <option value="email">Email</option>
-                <option value="cpc">CPC</option>
-                <option value="display">Display</option>
-                <option value="content_syndication">Content Syndication</option>
-                <option value="retargeting">Retargeting</option>
-                <option value="print">Print</option>
-                <option value="qrcode">QR Code</option>
-                <option value="sponsored-email">Sponsored Email</option>
-                <option value="referral">Referral</option>
+            <label for="utm-medium">UTM Medium <span class="required">*</span></label>
+            <select id="utm-medium" name="utm_medium" multiple="multiple" required>
+                <!-- Options will be added by JavaScript -->
             </select>
         </div>
         <div class="form-group">
-            <label for="utm-campaign">UTM Campaign <span class="required-asterisk">*</span></label>
-            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="Paste Salesforce Campaign Name here e.g 20240626 EU NTN AMOSSHE" required>
+            <label for="utm-campaign">UTM Campaign <span class="required">*</span></label>
+            <input type="text" id="utm-campaign" name="utm_campaign" placeholder="e.g., 20240626 EU NTN AMOSSHE" required>
         </div>
         <div class="form-group">
-            <label for="utm-campaignid">UTM Campaign ID <span class="required-asterisk">*</span></label>
+            <label for="utm-campaignid">UTM Campaign ID <span class="required">*</span></label>
             <input type="text" id="utm-campaignid" name="utm_campaignid" placeholder="e.g., 00vNu000005KKuBIAW" required>
         </div>
         <div class="form-group">
             <label for="utm-content">UTM Content</label>
             <input type="text" id="utm-content" name="utm_content" placeholder="e.g., elive24">
         </div>
-        <button type="button" onclick="generateUTMs()">Generate UTM URLs</button>
+        <button type="button" onclick="generateUTMs()">Generate UTM URL</button>
         <button type="button" onclick="copyToClipboard()">Copy URL</button>
         <button type="button" onclick="exportToCSV()">Export to CSV</button>
     </form>
     <div id="utm-urls"></div>
-    <div class="description">
-        <h3>How to use the UTM Parameter Builder</h3>
-        <ol>
-            <li><strong>Base URL:</strong> Enter the base URL of your campaign.</li>
-            <li><strong>UTM Source:</strong> Select one or multiple sources for your campaign.</li>
-            <li><strong>UTM Medium:</strong> Select one or multiple mediums for your campaign.</li>
-            <li><strong>UTM Campaign:</strong> Enter your campaign name. The field will automatically convert spaces to hyphens and capital letters to lowercase.</li>
-            <li><strong>UTM Campaign ID:</strong> Enter the campaign ID.</li>
-            <li><strong>UTM Content:</strong> Optionally, enter content information.</li>
-            <li><strong>Generate URL:</strong> Click the "Generate UTM URL" button to generate the UTM URLs. If any required fields are left blank, the form will prompt you to fill them out and will not generate the UTM URLs until all required fields are complete.</li>
-            <li><strong>Copy URL:</strong> Use the "Copy URL" button to copy the generated UTM URL to your clipboard for easy use in your campaigns.</li>
-            <li><strong>Export to CSV:</strong> Use the "Export to CSV" button to download the generated UTM URLs as a CSV file.</li>
-        </ol>
-        <p>Note: If any required fields (indicated with a red asterisk *) are left blank, the form will prompt you to fill them out and will not generate the UTM URL until all required fields are complete.</p>
-    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        function formatCampaignName(name) {
-            return name.toLowerCase().replace(/\s+/g, '-');
-        }
+        const sources = [
+            "6sense", "aacrao", "badge", "blog", "caubo", "chronicle", "consensusdemo",
+            "customer-center", "demandbase", "demandscience", "digital-insider", "educause",
+            "ellucian.com", "ellumination", "encore", "facebook", "google", "industry-drive",
+            "insidescoop-newsletter", "insider-higher-ed", "instagram", "intentsify", "itb",
+            "linkedin", "marketo", "marketolp", "mediaplanet", "outlook", "on24", "pansoft",
+            "podcast", "postbeyond", "pureb2b", "rev-enablement-newsletter", "sign", "taqniyat",
+            "unbounce", "universitybusiness", "youtube", "lac-event", "ucisa", "twitter", 
+            "HEUG", "Press Release", "Drift", "Gong"
+        ].sort();
+
+        const mediums = [
+            "social", "email", "cpc", "display", "content_syndication", "retargeting",
+            "print", "qrcode", "sponsored-email", "referral"
+        ].sort();
+
+        $(document).ready(function() {
+            const sourceSelect = $('#utm-source');
+            const mediumSelect = $('#utm-medium');
+
+            sources.forEach(source => {
+                sourceSelect.append(new Option(source, source));
+            });
+
+            mediums.forEach(medium => {
+                mediumSelect.append(new Option(medium, medium));
+            });
+
+            sourceSelect.select2({
+                placeholder: "Select source(s)",
+                allowClear: true
+            });
+
+            mediumSelect.select2({
+                placeholder: "Select medium(s)",
+                allowClear: true
+            });
+        });
 
         function generateUTMs() {
             const baseurl = document.getElementById('base-url').value;
-            const sources = Array.from(document.getElementById('utm-source').selectedOptions).map(option => option.value);
-            const mediums = Array.from(document.getElementById('utm-medium').selectedOptions).map(option => option.value);
-            const campaign = formatCampaignName(document.getElementById('utm-campaign').value);
+            const sources = $('#utm-source').val();
+            const mediums = $('#utm-medium').val();
+            const campaign = document.getElementById('utm-campaign').value.toLowerCase().replace(/ /g, '-');
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
