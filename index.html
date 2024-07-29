@@ -21,34 +21,16 @@
             padding: 8px;
             box-sizing: border-box;
         }
-        #utm-url {
+        #utm-urls {
             margin-top: 20px;
             padding: 10px;
             background: #f4f4f4;
             border: 1px solid #ddd;
         }
-        #copy-button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        #copy-button:hover {
-            background: #0056b3;
-        }
-        .description {
-            margin-top: 20px;
-            padding: 10px;
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+        .required-asterisk {
+            color: red;
         }
         .required-note {
-            color: red;
-            font-size: 0.9em;
-        }
-        .required-asterisk {
             color: red;
         }
     </style>
@@ -63,38 +45,37 @@
         </div>
         <div class="form-group">
             <label for="utm-source">UTM Source <span class="required-asterisk">*</span></label>
-            <select id="utm-source" name="utm_source" required>
-                <option value="" selected>Select value</option>
-                <option value="">None</option>
+            <select id="utm-source" name="utm_source" multiple required>
+                <option value="">-- Select value --</option>
                 <option value="6sense">6sense</option>
                 <option value="aacrao">AACRAO</option>
                 <option value="badge">Badge</option>
                 <option value="blog">Blog</option>
                 <option value="caubo">CAUBO</option>
                 <option value="chronicle">Chronicle</option>
-                <option value="consensusdemo">Consensus Demo</option>
+                <option value="consensusdemo">ConsensusDemo</option>
                 <option value="customer-center">Customer Center</option>
                 <option value="demandbase">Demandbase</option>
-                <option value="demandscience">Demand Science</option>
+                <option value="demandscience">DemandScience</option>
                 <option value="digital-insider">Digital Insider</option>
-                <option value="educause">Educause</option>
+                <option value="educause">EDUCAUSE</option>
                 <option value="ellucian.com">Ellucian.com</option>
                 <option value="ellumination">Ellumination</option>
                 <option value="encore">Encore</option>
                 <option value="facebook">Facebook</option>
                 <option value="google">Google</option>
                 <option value="industry-drive">Industry Drive</option>
-                <option value="insidescoop-newsletter">Inside Scoop Newsletter</option>
+                <option value="insidescoop-newsletter">InsideScoop Newsletter</option>
                 <option value="insider-higher-ed">Insider Higher Ed</option>
                 <option value="instagram">Instagram</option>
                 <option value="intentsify">Intentsify</option>
                 <option value="itb">ITB</option>
                 <option value="linkedin">LinkedIn</option>
                 <option value="marketo">Marketo</option>
-                <option value="marketolp">Marketo LP</option>
+                <option value="marketolp">MarketoLP</option>
                 <option value="mediaplanet">MediaPlanet</option>
                 <option value="outlook">Outlook</option>
-                <option value="on24">ON24</option>
+                <option value="on24">On24</option>
                 <option value="pansoft">Pansoft</option>
                 <option value="podcast">Podcast</option>
                 <option value="postbeyond">PostBeyond</option>
@@ -103,22 +84,21 @@
                 <option value="sign">Sign</option>
                 <option value="taqniyat">Taqniyat</option>
                 <option value="unbounce">Unbounce</option>
-                <option value="universitybusiness">University Business</option>
+                <option value="universitybusiness">UniversityBusiness</option>
                 <option value="youtube">YouTube</option>
                 <option value="lac-event">LAC Event</option>
                 <option value="ucisa">UCISA</option>
                 <option value="twitter">Twitter</option>
-                <option value="heug">HEUG</option>
-                <option value="press-release">Press Release</option>
-                <option value="drift">Drift</option>
-                <option value="gong">Gong</option>
+                <option value="HEUG">HEUG</option>
+                <option value="Press Release">Press Release</option>
+                <option value="Drift">Drift</option>
+                <option value="Gong">Gong</option>
             </select>
         </div>
         <div class="form-group">
             <label for="utm-medium">UTM Medium <span class="required-asterisk">*</span></label>
-            <select id="utm-medium" name="utm_medium" required>
-                <option value="" selected>Select value</option>
-                <option value="">None</option>
+            <select id="utm-medium" name="utm_medium" multiple required>
+                <option value="">-- Select value --</option>
                 <option value="social">Social</option>
                 <option value="email">Email</option>
                 <option value="cpc">CPC</option>
@@ -143,29 +123,25 @@
             <label for="utm-content">UTM Content</label>
             <input type="text" id="utm-content" name="utm_content" placeholder="e.g., elive24">
         </div>
-        <button type="button" onclick="generateUTM()">Generate UTM URL</button>
-        <button type="button" id="copy-button" onclick="copyToClipboard()">Copy URL</button>
+        <button type="button" onclick="generateUTMs()">Generate UTM URLs</button>
+        <button type="button" onclick="copyToClipboard()">Copy URL</button>
+        <button type="button" onclick="exportToCSV()">Export to CSV</button>
     </form>
-    <div id="utm-url"></div>
-
+    <div id="utm-urls"></div>
     <div class="description">
-        <h2>How to Use the UTM Parameter Builder Form</h2>
-        <p>
-            The Ellucian UTM Parameter Builder is designed to help marketers generate UTM URLs easily for their campaigns. Follow these steps to use the form:
-        </p>
+        <h3>How to use the UTM Parameter Builder</h3>
         <ol>
-            <li><strong>Base URL:</strong> Enter the base URL of your website (e.g., ellucian.com). The prefix <code>https://www.</code> will be automatically added to the generated URL.</li>
-            <li><strong>UTM Source:</strong> Select the source of your traffic from the dropdown list (e.g., Google, Facebook). If you do not want to include a UTM source, select "None" or leave it blank.</li>
-            <li><strong>UTM Medium:</strong> Choose the medium through which the traffic arrives (e.g., email, social). Similar to UTM Source, you can leave this blank or select "None" if you prefer not to include it.</li>
-            <li><strong>UTM Campaign:</strong> Enter the campaign name. This field will automatically convert spaces to hyphens and capitalize all letters to lowercase (e.g., "20240626 EU NTN AMOSSHE" becomes "20240626-eu-ntn-amosshe").</li>
-            <li><strong>UTM Campaign ID:</strong> If applicable, input the campaign ID (e.g., 00vNu000005KKuBIAW).</li>
-            <li><strong>UTM Content:</strong> Add additional content information if needed (e.g., elive24).</li>
-            <li><strong>Generate UTM URL:</strong> Click the "Generate UTM URL" button to create the URL. If you make any changes to the fields, simply click the button again to update the URL without refreshing the page.</li>
+            <li><strong>Base URL:</strong> Enter the base URL of your campaign.</li>
+            <li><strong>UTM Source:</strong> Select one or multiple sources for your campaign.</li>
+            <li><strong>UTM Medium:</strong> Select one or multiple mediums for your campaign.</li>
+            <li><strong>UTM Campaign:</strong> Enter your campaign name. The field will automatically convert spaces to hyphens and capital letters to lowercase.</li>
+            <li><strong>UTM Campaign ID:</strong> Enter the campaign ID.</li>
+            <li><strong>UTM Content:</strong> Optionally, enter content information.</li>
+            <li><strong>Generate URL:</strong> Click the "Generate UTM URL" button to generate the UTM URLs. If any required fields are left blank, the form will prompt you to fill them out and will not generate the UTM URLs until all required fields are complete.</li>
             <li><strong>Copy URL:</strong> Use the "Copy URL" button to copy the generated UTM URL to your clipboard for easy use in your campaigns.</li>
+            <li><strong>Export to CSV:</strong> Use the "Export to CSV" button to download the generated UTM URLs as a CSV file.</li>
         </ol>
-        <p>
-            Note: If any required fields (indicated with a red asterisk *) are left blank, the form will prompt you to fill them out and will not generate the UTM URL until all required fields are complete.
-        </p>
+        <p>Note: If any required fields (indicated with a red asterisk *) are left blank, the form will prompt you to fill them out and will not generate the UTM URL until all required fields are complete.</p>
     </div>
 
     <script>
@@ -173,52 +149,54 @@
             return name.toLowerCase().replace(/\s+/g, '-');
         }
 
-        function generateUTM() {
+        function generateUTMs() {
             const baseurl = document.getElementById('base-url').value;
-            const source = document.getElementById('utm-source').value;
-            const medium = document.getElementById('utm-medium').value;
+            const sources = Array.from(document.getElementById('utm-source').selectedOptions).map(option => option.value);
+            const mediums = Array.from(document.getElementById('utm-medium').selectedOptions).map(option => option.value);
             const campaign = formatCampaignName(document.getElementById('utm-campaign').value);
             const campaignid = document.getElementById('utm-campaignid').value;
             const content = document.getElementById('utm-content').value;
 
-            if (!baseurl || !source || !medium || !campaign || !campaignid) {
+            if (!baseurl || sources.length === 0 || mediums.length === 0 || !campaign || !campaignid) {
                 alert("Please fill out all required fields.");
                 return;
             }
 
-            let utmURL = `https://www.${encodeURIComponent(baseurl)}?`;
+            const urls = [];
 
-            if (source) {
-                utmURL += `utm_source=${encodeURIComponent(source)}&`;
-            }
-            if (medium) {
-                utmURL += `utm_medium=${encodeURIComponent(medium)}&`;
-            }
-            if (campaign) {
-                utmURL += `utm_campaign=${encodeURIComponent(campaign)}&`;
-            }
-            if (campaignid) {
-                utmURL += `utm_campaignid=${encodeURIComponent(campaignid)}&`;
-            }
-            if (content) {
-                utmURL += `utm_content=${encodeURIComponent(content)}&`;
-            }
+            sources.forEach(source => {
+                mediums.forEach(medium => {
+                    let utmURL = `https://www.${encodeURIComponent(baseurl)}?utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}&utm_campaignid=${encodeURIComponent(campaignid)}`;
+                    if (content) {
+                        utmURL += `&utm_content=${encodeURIComponent(content)}`;
+                    }
+                    urls.push(utmURL);
+                });
+            });
 
-            // Remove the trailing "&" if present
-            utmURL = utmURL.replace(/&$/, '');
-
-            document.getElementById('utm-url').innerText = utmURL;
+            document.getElementById('utm-urls').innerText = urls.join('\n');
         }
 
         function copyToClipboard() {
-            const utmURL = document.getElementById('utm-url').innerText;
-            if (utmURL) {
-                navigator.clipboard.writeText(utmURL).then(() => {
-                    alert('UTM URL copied to clipboard!');
-                });
-            } else {
-                alert('No UTM URL to copy.');
-            }
+            const urlsText = document.getElementById('utm-urls').innerText;
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = urlsText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+            alert('UTM URLs copied to clipboard');
+        }
+
+        function exportToCSV() {
+            const urls = document.getElementById('utm-urls').innerText.split('\n');
+            let csvContent = "data:text/csv;charset=utf-8," + urls.join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "utm_urls.csv");
+            document.body.appendChild(link);
+            link.click();
         }
     </script>
 </body>
