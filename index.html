@@ -68,11 +68,24 @@
             <label for="utm-content">UTM Content</label>
             <input type="text" id="utm-content" name="utm_content" placeholder="e.g., elive24">
         </div>
-        <button type="button" onclick="generateUTMs()">Generate UTM URL</button>
+        <button type="button" onclick="generateUTMs()">Generate UTM URL(s)</button>
         <button type="button" onclick="copyToClipboard()">Copy URL</button>
         <button type="button" onclick="exportToCSV()">Export to CSV</button>
     </form>
     <div id="utm-urls"></div>
+    
+    <h3>How to use the UTM Parameter Builder</h3>
+    <ol>
+        <li><strong>Base URL:</strong> Enter the base URL for your link. (i.e the page you are driving people to).</li>
+        <li><strong>UTM Source:</strong> Select one or multiple sources for your campaign. If multiple options are selected, the form will generate a UTM URL for every combination of selected options.</li>
+        <li><strong>UTM Medium:</strong> Select one or multiple mediums for your campaign. If multiple options are selected, the form will generate a UTM URL for every combination of selected options.</li>
+        <li><strong>UTM Campaign:</strong> Enter your campaign name. The field will automatically convert spaces to hyphens and capital letters to lowercase.</li>
+        <li><strong>UTM Campaign ID:</strong> Enter the campaign ID (e.g., 00vNu000005KKuBIAW).</li>
+        <li><strong>UTM Content:</strong> Optionally, enter UTM Content text.</li>
+        <li><strong>Generate URL:</strong> Click the "Generate UTM URL(s)" button to generate the UTM URLs. If any required fields are left blank, the form will prompt you to fill them out and will not generate the UTM URLs until all required fields are complete.</li>
+        <li><strong>Copy URL:</strong> Use the "Copy URL" button to copy the generated UTM URL(s) to your clipboard for easy use in your campaigns.</li>
+        <li><strong>Export to CSV:</strong> Use the "Export to CSV" button to download the generated UTM URLs as a CSV file.</li>
+    </ol>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
